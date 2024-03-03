@@ -1,26 +1,28 @@
 # miyoo-fetch
 
-fetch rom for the miyoo-mini
+Fetch game file for the miyoo-mini plus
 
 ## usage
 
 ```
 git/miyoo-fetch [main●] » ./miyoo-fetch
-Welcome ! Please enter the rom ID from edgeemu.net:
-236252
-info: Requesting rom's info...
-info: Looking for ROM's name
-info: Rom's id: 236252 !
-info: Rom's name: Pokemon - Crystal Version (USA, Europe) (Rev A) !
-info: Opened destination file
-info: Requesting download...
-info: Downloading...
-info: Downloaded !
+Welcome !
+Please enter the rom ID from edgeemu.net: 11111
+info: filename: Pokemon - Whatever.7z
+info: Downloading 877kb
+info: Downloaded 877/877kb
+info: Thanks for using me :)
 ```
 
 ## how to compile
-`zig build-exe -O ReleaseSafe --target arm-linux miyoo-fetch.zig`
+`zig build-exe -O ReleaseFast --target arm-linux miyoo-fetch.zig`
 
 ## Issue
 
 It seems there is an issue currently with `http.Client`, which make an error `TlsInitializationFailed`, when being run on the Miyoo Mini +.
+
+* Apparently it could be due to the TlS 1.3 not being supported on the Miyoo
+
+## Disclaimer
+
+This code was made for learning purpose only, I am not responsible for the usage of it.
