@@ -27,4 +27,4 @@ It seems there is an issue currently with `http.Client`, which make an error `Tl
 
 This code was made for learning purpose only, I am not responsible for the usage of it.
 
-You can find some nice abandonware on `myabandonware.com`.
+You can find some nice abandonware on [myabandonware.com](https://www.myabandonware.com).
