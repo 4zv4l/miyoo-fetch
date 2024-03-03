@@ -8,7 +8,7 @@ Fetch game file for the miyoo-mini plus
 git/miyoo-fetch [main●] » ./miyoo-fetch
 Welcome !
 Please enter the rom ID from edgeemu.net: 11111
-info: filename: Pokemon - Whatever.7z
+info: filename: Tunnel Runner.7z
 info: Downloading 877kb
 info: Downloaded 877/877kb
 info: Thanks for using me :)
@@ -26,3 +26,5 @@ It seems there is an issue currently with `http.Client`, which make an error `Tl
 ## Disclaimer
 
 This code was made for learning purpose only, I am not responsible for the usage of it.
+
+You can find some nice abandonware on `myabandonware.com`.
