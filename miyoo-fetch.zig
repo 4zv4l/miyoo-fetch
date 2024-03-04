@@ -10,6 +10,7 @@ const print = std.debug.print;
 
 // keep log.info even in ReleaseFast
 pub const std_options = .{ .log_level = .info };
+pub const DefaultFilename = "fetch.out";
 
 // get ID from user
 fn getFileID() !usize {
@@ -32,12 +33,24 @@ fn downloadFile(allocator: Allocator, client: *http.Client, uri: std.Uri, filena
     try req.wait();
 
     // get file info
-    const file_size = req.response.content_length.?;
-    const file_name = blk: {
-        const content = req.response.content_disposition.?;
-        var it = std.mem.split(u8, content, "\"");
-        _ = it.next(); // skip first one
-        break :blk it.next().?;
+    const file_size = if (req.response.content_length) |l| l else 0;
+    const file_name = if (filename) |name| name else blk: {
+        log.debug("Didnt get a filename parameter", .{});
+        if (req.response.content_disposition) |content| {
+            var content_fields = std.mem.split(u8, content, "; ");
+            while (content_fields.next()) |field| {
+                if (std.mem.containsAtLeast(u8, field, 1, "filename=")) {
+                    var it = std.mem.split(u8, field, "\"");
+                    if (it.next()) |_| if (it.next()) |name| {
+                        log.debug("Found filename in headers: {s}", .{name});
+                        break :blk name;
+                    };
+                }
+            }
+        }
+        log.debug("Didnt find a filename field in the header", .{});
+        log.debug("Fallback on default filename: {s}", .{DefaultFilename});
+        break :blk DefaultFilename;
     };
 
     // log file info
