@@ -1,6 +1,6 @@
 # miyoo-fetch
 
-Fetch game file for the miyoo-mini plus
+Fetch file for the miyoo-mini plus
 
 ## usage
 
